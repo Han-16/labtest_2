@@ -24,6 +24,7 @@ while True:
         operation = sentence[0].strip()     # PUT / GET ...
         file_name = sentence[1].strip()     # b.html ...
         print(f"operation is : {operation}, file_name is : {file_name}")
+    
     except UnicodeDecodeError:
         byte_code = b""
         recv_split = recv.split(b'\n')[1:]
@@ -73,17 +74,11 @@ while True:
     elif operation == "LS":
         files = [f for f in os.listdir('.') if os.path.isfile(f) and f.endswith('.' + file_name)]
         if not files:
-            # 해당 확장자의 파일이 없으면 "FILE NOT FOUND"을 클라이언트로 전송합니다.
-            # conn.send("FILE NOT FOUND\r\n".encode())
             pass
         else:
-            # 해당 확장자의 파일 목록을 클라이언트로 전송합니다.
-            file_plus_rn = [i + "\r\n" for i in files]
             file_list = ""
             for i in files:
-                file_list += i
-                file_list += "\n"
-            # file_list = '\r\n'.join(files)
+                file_list += i + "\n"
             conn.send(file_list.encode())
 
     conn.close()
