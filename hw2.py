@@ -78,11 +78,12 @@ while True:
             pass
         else:
             # 해당 확장자의 파일 목록을 클라이언트로 전송합니다.
-            # file_plus_rn = [i + "\r\n" for i in files]
-            # result = ""
-            # for i in file_plus_rn:
-            #     result += i
-            file_list = '\r\n'.join(files) + '\r\n'
+            file_plus_rn = [i + "\r\n" for i in files]
+            file_list = ""
+            for i in files:
+                file_list += i
+                file_list += "\n"
+            # file_list = '\r\n'.join(files)
             conn.send(file_list.encode())
 
     conn.close()

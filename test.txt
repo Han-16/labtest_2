@@ -19,7 +19,7 @@ echo "PUT kk.txt" | cat - palladio.jpg | nc localhost 10000
 cmp palladio.jpg kk.txt 
 
 #6
-echo "LS html" | nc localhost 10000 | sort  > kk.txt
+echo "LS html" | nc localhost 10000 | sort  > kk.txt 
 ls *.html | sort > kk1.txt
 diff kk1.txt kk.txt
 
